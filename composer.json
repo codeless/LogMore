@@ -1,5 +1,7 @@
 {
 	"name" : "codeless/logmore",
+	"keywords" : ["log","logging"],
+	"homepage" : "https://www.github.com/codeless/logmore",
 	"require" : {
 		"php" : ">=5.2.0"
 	}
