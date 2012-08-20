@@ -1,0 +1,9 @@
+autogen definitions logmorebase;
+priorities={id=LOG_EMERG;name=emerg;description="system is unusable";};
+priorities={id=LOG_ALERT;name=alert;description="action must be taken immediately";};
+priorities={id=LOG_CRIT;name=crit;description="critical conditions";};
+priorities={id=LOG_ERR;name=err;description="error conditions";};
+priorities={id=LOG_WARNING;name=warning;description="warning conditions";};
+priorities={id=LOG_NOTICE;name=notice;description="normal, but significant, condition";};
+priorities={id=LOG_INFO;name=info;description="informational message";};
+priorities={id=LOG_DEBUG;name=debug;description="debug-level message";};
