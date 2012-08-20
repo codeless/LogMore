@@ -1,0 +1,6 @@
+{
+	"name" : "codeless/logmore",
+	"require" : {
+		"php" : ">=5.2.0"
+	}
+}
