@@ -77,7 +77,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function emerg() {
-		return self::add(LOG_EMERG, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_EMERG, $args);
 	}
 
 	/**
@@ -98,7 +102,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function alert() {
-		return self::add(LOG_ALERT, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_ALERT, $args);
 	}
 
 	/**
@@ -119,7 +127,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function crit() {
-		return self::add(LOG_CRIT, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_CRIT, $args);
 	}
 
 	/**
@@ -140,7 +152,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function err() {
-		return self::add(LOG_ERR, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_ERR, $args);
 	}
 
 	/**
@@ -161,7 +177,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function warning() {
-		return self::add(LOG_WARNING, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_WARNING, $args);
 	}
 
 	/**
@@ -182,7 +202,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function notice() {
-		return self::add(LOG_NOTICE, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_NOTICE, $args);
 	}
 
 	/**
@@ -203,7 +227,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function info() {
-		return self::add(LOG_INFO, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_INFO, $args);
 	}
 
 	/**
@@ -224,7 +252,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function debug() {
-		return self::add(LOG_DEBUG, func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add(LOG_DEBUG, $args);
 	}
 
 };

@@ -78,7 +78,11 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	public static function [+ name +]() {
-		return self::add([+ id +], func_get_args());
+		# Get arguments to this function:
+		$args = func_get_args();
+
+		# Add message to log:
+		return self::add([+ id +], $args);
 	}
 [+ ENDFOR priorities +]
 };
