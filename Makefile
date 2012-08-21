@@ -18,7 +18,7 @@ more = $(BUILDDIR)/logmore.php
 logbasedef = $(BUILDDIR)/logmorebase.def
 base = logmorebase.php
 
-main: 	base $(base) $(more)
+main: 	testfiles base $(base) $(more)
 	@echo "Joining PHP files..."
 	$(CAT) $(base) $(more) > logmore.php
 	@echo "Move to final destination..."
@@ -35,13 +35,17 @@ doc: 	src/logmore.php README.txt
 	$(MKDIR) doc
 	$(NATURALDOCS) -i . -o HTML doc/ -p .
 
-test:
+testfiles:
+	@echo "Creating test-directory if not present..."
+	$(MKDIR) -p tests
 	@echo "Compiling test-script..."
 	$(AUTOGEN) -T $(testtemplate) -b LogMoreTest $(logbasedef) 
 	@echo "Moving test-script to test-directory..."
 	$(MV) LogMoreTest.php tests/
+
+test:
 	phpunit
 
 clean:
 	@echo "Cleaning up..."
-	rm -fr logmorebase.php tests/LogMoreTest.php Data/ doc/ Languages.txt Menu.txt Topics.txt
+	rm -fr logmorebase.php tests/ Data/ doc/ Languages.txt Menu.txt Topics.txt
