@@ -48,4 +48,4 @@ test:
 
 clean:
 	@echo "Cleaning up..."
-	rm -fr logmorebase.php tests/ Data/ doc/ Languages.txt Menu.txt Topics.txt
+	rm -fr logmorebase.php tests/ $(logbasedef) Data/ doc/ Languages.txt Menu.txt Topics.txt
