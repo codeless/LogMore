@@ -18,7 +18,7 @@ more = $(BUILDDIR)/logmore.php
 logbasedef = $(BUILDDIR)/logmorebase.def
 base = logmorebase.php
 
-main: 	testfiles base $(base) $(more)
+main: 	base testfiles $(base) $(more)
 	@echo "Joining PHP files..."
 	$(CAT) $(base) $(more) > logmore.php
 	@echo "Move to final destination..."
