@@ -24,7 +24,10 @@ class LogMoreTest extends PHPUnit_Framework_TestCase {
 				array(1, 0.11, 0.111)),
 			array( 	'Some strings: asdf, a, as',
 				'Some strings: %s, %.1s, %.2s',
-				array('asdf', 'asdf', 'asdf'))
+				array('asdf', 'asdf', 'asdf')),
+			array( 	'Some empty strings: , ,  ',
+				'Some empty strings: %s, %.1s, %.2s',
+				array(null, '', ' '))
 		);
 	}
 

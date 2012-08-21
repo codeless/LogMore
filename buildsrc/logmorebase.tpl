@@ -51,8 +51,10 @@ abstract class LogMoreBase {
 	 */
 	public static function format($message, $args) {
 		# Format message
-		# only neccessary if additional arguments were passed:
-		$formated_message = (isset($args[0]))
+		# Only neccessary if additional arguments were passed.
+		# To allow NULL-arguments also, the usage of sizeof()
+		# over iset() is favored:
+		$formated_message = (sizeof($args))
 			? vsprintf($message, $args)
 			: $message;
 

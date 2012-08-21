@@ -1,5 +1,9 @@
 Title: History
 
+- 2012-08-21, 01:00 PM:
+	- Released version 1.0.5 to conform versioning to packagist
+	- Bugfixed handling of NULL-values when formating messages
+
 - 2012-08-21:
 	- Released version 1.04, now LogMore works with PHP 5.2 too
 
