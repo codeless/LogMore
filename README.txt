@@ -1,6 +1,6 @@
 Title: Description
 
-The LogMore class is a minimalist PHP logging tool for versions prior to PHP 5.3, that provides wrappers for the PHP functions openlog, closelog and syslog.
+The LogMore class is a minimalist PHP logging tool for versions >= PHP 5.2, that provides wrappers for the PHP functions openlog, closelog and syslog.
 
 
 Title: Usage example from within PHP
