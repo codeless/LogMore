@@ -1,7 +1,7 @@
 [+ AutoGen5 template php +]
 <?php
 
-require('src/logmore.php');
+require('src/LogMore.php');
 
 /**
  * Class: LogMoreTest
