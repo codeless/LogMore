@@ -4,6 +4,7 @@ Title: History
 
 	- Renamed final output-file logmore.php to LogMore.php
 		to ease usage of __autoload with this class
+	- Added STATUS.md
 
 
 - 2012-08-21:
