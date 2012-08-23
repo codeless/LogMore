@@ -1,5 +1,11 @@
 Title: History
 
+- 2012-08-23, v0.8.1
+
+	- Renamed final output-file logmore.php to LogMore.php
+		to ease usage of __autoload with this class
+
+
 - 2012-08-21:
 	- Removed failed tags v1.0, v1.04
 	- Released version 0.8.0 to conform versioning to packagist

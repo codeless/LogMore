@@ -22,7 +22,7 @@ main: 	base testfiles $(base) $(more)
 	@echo "Joining PHP files..."
 	$(CAT) $(base) $(more) > logmore.php
 	@echo "Move to final destination..."
-	$(MV) logmore.php src/
+	$(MV) logmore.php src/LogMore.php
 
 base: 	$(priorities) $(extract) $(template)
 	@echo "Extracting priorities..."
