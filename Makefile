@@ -5,6 +5,7 @@
 AWK = /usr/bin/awk
 CAT = /bin/cat
 MV = /bin/mv
+CURL = /usr/bin/curl
 MKDIR = /bin/mkdir
 TMPDIR = /tmp
 AUTOGEN = /usr/bin/autogen
@@ -24,16 +25,23 @@ main: 	base testfiles $(base) $(more)
 	@echo "Move to final destination..."
 	$(MV) logmore.php src/LogMore.php
 
+install:
+	$(CURL) https://raw.github.com/codeless/nd2md/master/nd2md.sh > nd2md.sh
+	chmod ugo+x nd2md.sh
+
 base: 	$(priorities) $(extract) $(template)
 	@echo "Extracting priorities..."
 	$(AWK) -f $(extract) $(priorities) > $(logbasedef)
 	@echo "Generating logbase.php file..."
 	$(AUTOGEN) -T $(template) $(logbasedef)
 
-doc: 	src/logmore.php README.txt
+doc: 	src/LogMore.php README.txt
 	@echo "Make doc-directory..."
 	$(MKDIR) doc
 	$(NATURALDOCS) -i . -o HTML doc/ -p .
+	@echo "Generate markdown doc..."
+	./nd2md.sh README.txt > README.md
+	./nd2md.sh HISTORY.txt > HISTORY.md
 
 testfiles:
 	@echo "Creating test-directory if not present..."
@@ -48,4 +56,4 @@ test:
 
 clean:
 	@echo "Cleaning up..."
-	rm -fr logmorebase.php tests/ $(logbasedef) Data/ doc/ Languages.txt Menu.txt Topics.txt
+	rm -fr logmorebase.php tests/ $(logbasedef) Data/ doc/ Languages.txt Menu.txt Topics.txt nd2md.sh

@@ -18,7 +18,9 @@ class LogMore extends LogMoreBase {
 	 * 	$ident - An identification string for the application 
 	 * 		that uses LogMore
 	 * 	$option - Indicator for logging options
+	 * 		Default: LOG_PID | LOG_PERROR
 	 * 	$facility - Logging facility
+	 * 		Default: LOG_USER
 	 *
 	 * Returns:
 	 *
@@ -31,9 +33,17 @@ class LogMore extends LogMoreBase {
 	 */
 	public static function open(
 		$ident,
-		$option=LOG_PID,
-		$facility=LOG_USER)
+		$option=null,
+		$facility=null)
 	{
+		# Set defaults:
+		if (!isset($option)) {
+			$option = LOG_PID | LOG_PERROR;
+		}
+		if (!isset($facility)) {
+			$facility = LOG_USER;
+		}
+
 		if (!$rc = openlog($ident, $option, $facility)) {
 			trigger_error(E_USER_ERROR, 'Failed to open log');
 		}
