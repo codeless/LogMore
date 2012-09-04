@@ -35,7 +35,7 @@ base: 	$(priorities) $(extract) $(template)
 	@echo "Generating logbase.php file..."
 	$(AUTOGEN) -T $(template) $(logbasedef)
 
-doc: 	src/LogMore.php README.txt
+doc: 	src/LogMore.php README.txt install
 	@echo "Make doc-directory..."
 	$(MKDIR) doc
 	$(NATURALDOCS) -i . -o HTML doc/ -p .
