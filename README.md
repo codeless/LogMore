@@ -67,6 +67,11 @@ on your commandline in the root-directory of LogMore.
 - Composer - Dependency manager for PHP: http://www.getcomposer.org
 
 
+# Ideas for improving LogMore
+
+- Enabling/disabling logging of individual priorities to reduce syslog()-calls
+
+
 # Credits and Bugreports
 
 LogMore was written by Codeless (http://www.codeless.at/). All bugreports can be directed to more@codeless.at -- even better bugreports are posted on the github-repository of this package: https://www.github.com/codeless/logmore

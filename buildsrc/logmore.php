@@ -45,7 +45,7 @@ class LogMore extends LogMoreBase {
 		}
 
 		if (!$rc = openlog($ident, $option, $facility)) {
-			trigger_error(E_USER_ERROR, 'Failed to open log');
+			trigger_error('Failed to open log', E_USER_ERROR);
 		}
 
 		return $rc;
@@ -63,7 +63,7 @@ class LogMore extends LogMoreBase {
 	 */
 	public static function close() {
 		if (!$rc = closelog()) {
-			trigger_error(E_USER_ERROR, 'Failed to close log');
+			trigger_error('Failed to close log', E_USER_ERROR);
 		}
 
 		return $rc;

@@ -1,5 +1,7 @@
 # History
 
+- v0.8.4, not yet released
+	- Bugfixed invalid usage of trigger_error()
 - v0.8.3 released on 2012-09-06
 	- Added autoload-functionality for packagist to composer.json
 - v0.8.2 released on 2012-09-04

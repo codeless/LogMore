@@ -35,10 +35,12 @@ base: 	$(priorities) $(extract) $(template)
 	@echo "Generating logbase.php file..."
 	$(AUTOGEN) -T $(template) $(logbasedef)
 
-doc: 	src/LogMore.php README.txt install
+doc: 	src/LogMore.php README.txt install mddoc
 	@echo "Make doc-directory..."
 	$(MKDIR) doc
 	$(NATURALDOCS) -i . -o HTML doc/ -p .
+
+mddoc: 	HISTORY.txt README.txt
 	@echo "Generate markdown doc..."
 	./nd2md.sh README.txt > README.md
 	./nd2md.sh HISTORY.txt > HISTORY.md
