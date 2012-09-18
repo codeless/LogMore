@@ -39,6 +39,19 @@ Using LogMore with the Unix/Linux tail-command works very well. While developing
 : 	/usr/bin/tail -F /path/to/error.log
 
 
+Title: Multiple logs
+
+LogMore prevents the usage of multiple logs with different idents. After LogMore::open has been called with the ident "x", LogMore will ignore any other call to open() if close() hasn't been called inbetween:
+
+:	LogMore::open('ident1');
+:	LogMore::open('ident2');
+:	LogMore::debug('A message'); # Still logging with ident1!
+:
+:	LogMore::close(); # Closing ident1
+:	LogMore::open('ident2');
+:	LogMore::debug('A message'); # Logging with ident2!
+
+
 Title: Installation
 
 Either install LogMore by downloading the src/logmore.php file or by using packagist/composer (see Resources-section).

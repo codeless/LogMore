@@ -3,6 +3,8 @@
  */
 class LogMore extends LogMoreBase {
 
+	private static $ident;
+
 	/**
 	 * Function: open
 	 *
@@ -36,16 +38,27 @@ class LogMore extends LogMoreBase {
 		$option=null,
 		$facility=null)
 	{
-		# Set defaults:
-		if (!isset($option)) {
-			$option = LOG_PID | LOG_PERROR;
-		}
-		if (!isset($facility)) {
-			$facility = LOG_USER;
-		}
+		# If log has already been opened
+		if (self::$ident) {
+			LogMore::info(
+				'Ignoring attempt to open log for ident %s',
+				$ident);
+			$rc = false;
+		} else {
+			# Set defaults:
+			if (!isset($option)) {
+				$option = LOG_PID | LOG_PERROR;
+			}
+			if (!isset($facility)) {
+				$facility = LOG_USER;
+			}
 
-		if (!$rc = openlog($ident, $option, $facility)) {
-			trigger_error('Failed to open log', E_USER_ERROR);
+			if (!$rc = openlog($ident, $option, $facility)) {
+				trigger_error('Failed to open log', E_USER_ERROR);
+			}
+
+			# Store ident for future calls of LogMore::open():
+			self::$ident = $ident;
 		}
 
 		return $rc;
@@ -64,9 +77,15 @@ class LogMore extends LogMoreBase {
 	public static function close() {
 		if (!$rc = closelog()) {
 			trigger_error('Failed to close log', E_USER_ERROR);
+		} else {
+			# Delete ident:
+			self::$ident = null;
 		}
 
 		return $rc;
 	}
+
+
+	public static function getIdent() { return self::$ident; }
 
 };

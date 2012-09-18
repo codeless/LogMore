@@ -1,5 +1,8 @@
 Title: History
 
+- v0.8.5, released on 2012-09-18
+	- Added handling for multiple calls to LogMore::open during
+		script execution
 - v0.8.4, released on 2012-09-14
 	- Bugfixed invalid usage of trigger_error()
 - v0.8.3 released on 2012-09-06

@@ -9,9 +9,9 @@ require('src/LogMore.php');
 
 class LogMoreTest extends PHPUnit_Framework_TestCase {
 
-	public function testPriorities() {
-[+ FOR priorities +]$this->assertEquals(true, LogMore::[+ name +]('Posting a [+ id +] message'));
-[+ ENDFOR priorities +]
+	public function testPriorities() {[+ FOR priorities +]
+		$this->assertEquals(true, LogMore::[+ name +]('Posting a [+ id +] message'));[+ 
+ENDFOR priorities +]
 	}
 
 	/**
@@ -39,6 +39,27 @@ class LogMoreTest extends PHPUnit_Framework_TestCase {
 	public function testFormating($result, $message, $args) {
 		# Testing the formating capabilites:
 		$this->assertEquals($result, LogMore::format($message, $args));
+	}
+
+	/**
+	 * Tests, if LogMore can be opened multiple times with different ident,
+	 * which should not be the case.
+	 */
+	public function testMultiOpen() {
+		$ident = 'myident';
+		LogMore::open($ident);
+		LogMore::open('mynewident'); # Should raise a info-logentry!
+
+		# Check if ident changed:
+		$this->assertEquals($ident, LogMore::getIdent());
+
+		# Close log to reopen again with new ident:
+		LogMore::close();
+		$new_ident = 'mynewident';
+		LogMore::open($new_ident);
+
+		# Check if ident changed:
+		$this->assertEquals($new_ident, LogMore::getIdent());
 	}
 
 };
