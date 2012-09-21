@@ -1,5 +1,6 @@
 {
 	"name" : "codeless/logmore",
+	"description" : "Minimalist logging tool providing wrappers for openlog, closelog and syslog",
 	"keywords" : ["log","logging"],
 	"homepage" : "https://www.github.com/codeless/logmore",
 	"require" : {
