@@ -1,5 +1,7 @@
 # History
 
+- v0.8.6, not released yet
+	- Decided to publish this package under the ISC-License
 - v0.8.5, released on 2012-09-18
 	- Added handling for multiple calls to LogMore::open during
 		script execution

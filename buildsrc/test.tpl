@@ -1,5 +1,12 @@
 [+ AutoGen5 template php +]
+[+ # This file is part of the LogMore package. +]
+[+ # Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at> +]
+[+ # LogMore is available under the ISC license; see LICENSE.txt +]
 <?php
+
+# This file is part of the LogMore package.
+# Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
+# LogMore is available under the ISC license; see LICENSE.txt
 
 require('src/LogMore.php');
 

@@ -88,3 +88,9 @@ Title: Ideas for improving LogMore
 Title: Credits and Bugreports
 
 LogMore was written by Codeless (<http://www.codeless.at/>). All bugreports can be directed to more@codeless.at -- even better bugreports are posted on the github-repository of this package: <https://www.github.com/codeless/logmore>
+
+
+Title: License
+
+Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
+LogMore is available under the ISC license; see LICENSE.txt
