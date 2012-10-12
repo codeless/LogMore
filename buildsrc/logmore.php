@@ -80,11 +80,13 @@ class LogMore extends LogMoreBase {
 		} else {
 			# Delete ident:
 			self::$ident = null;
+
+			# Reset counter:
+			self::$messageCounter = 0;
 		}
 
 		return $rc;
 	}
-
 
 	public static function getIdent() { return self::$ident; }
 

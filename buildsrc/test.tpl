@@ -1,12 +1,5 @@
 [+ AutoGen5 template php +]
-[+ # This file is part of the LogMore package. +]
-[+ # Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at> +]
-[+ # LogMore is available under the ISC license; see LICENSE.txt +]
 <?php
-
-# This file is part of the LogMore package.
-# Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
-# LogMore is available under the ISC license; see LICENSE.txt
 
 require('src/LogMore.php');
 
@@ -67,6 +60,56 @@ ENDFOR priorities +]
 
 		# Check if ident changed:
 		$this->assertEquals($new_ident, LogMore::getIdent());
+	}
+
+	public function testCounter() {
+		# Close opened Loggers:
+		LogMore::close();
+
+		# Reopen
+		LogMore::open('test');
+
+		# Send some messages
+		LogMore::debug('First message');
+		LogMore::debug('Second message');
+		LogMore::debug('Third message');
+
+		# Control counter:
+		$this->assertEquals(3, LogMore::getMessageCounter());
+
+		# Close and reopen again: 
+		LogMore::close();
+		LogMore::open('anothertest');
+
+		# Test message counter:
+		LogMore::debug('First message');
+		$this->assertEquals(1, LogMore::getMessageCounter());
+	}
+
+	public function testEnablingDisabling() {
+		# Close opened Loggers:
+		LogMore::close();
+
+		# Reopen
+		LogMore::open('test');
+
+		# Send some messages
+		LogMore::debug('First message');
+		LogMore::debug('Second message');
+		LogMore::debug('Third message');
+
+		# Disable logging:
+		LogMore::disable();
+
+		# These message should get eliminated:
+		LogMore::debug('First message');
+		LogMore::debug('Second message');
+
+		# Enable logging again:
+		LogMore::enable();
+
+		# Check counter:
+		$this->assertEquals(3, LogMore::getMessageCounter());
 	}
 
 };

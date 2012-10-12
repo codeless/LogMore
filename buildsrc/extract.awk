@@ -1,9 +1,5 @@
 # AWK Script for extracting the individual fields of priorities.txt
 #
-# This file is part of the LogMore package.
-# Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
-# LogMore is available under the ISC license; see LICENSE.txt
-#
 # Created on: 2012-08-02
 #
 # This script will extract the needed fields and output them as

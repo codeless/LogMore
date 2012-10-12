@@ -1,12 +1,40 @@
 [+ AutoGen5 template php +]
 [+ # This file is part of the LogMore package. +]
-[+ # Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at> +]
-[+ # LogMore is available under the ISC license; see LICENSE.txt +]
 
 /**
  * Class: LogMoreBase
  */
 abstract class LogMoreBase {
+
+	/**
+	 * Variable: $log
+	 * Either true or false; if true, logging takes place.
+	 * If false, logging won't take place.
+	 *
+	 * Set example:
+	 * : 	# Disable logging:
+	 * : 	LogMore::disable();
+	 * :
+	 * : 	# Enable logging:
+	 * : 	LogMore::enable();
+	 *
+	 * Opening and closing of logs is still allowed and won't
+	 * get intercepted!
+	 *
+	 * Default: true
+	 */
+	private static $log = true;
+
+	/**
+	 * Variable: $messageCounter
+	 * Counts the number of messages logged.
+	 */
+	protected static $messageCounter = 0;
+
+	public static function getMessageCounter() { return self::$messageCounter; }
+
+	public static function enable() { self::$log = true; }
+	public static function disable() { self::$log = false; }
 
 	/**
 	 * Function: add
@@ -26,14 +54,26 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	private static function add($priority, $data) {
-		# Get the message:
-		$message = array_shift($data);
+		$rc = true;
 
-		# Format message:
-		$formated_message = self::format($message, $data);
+		# Only log if logging is enabled:
+		if (self::$log) {
+			# Get the message:
+			$message = array_shift($data);
 
-		# Write to log:
-		return syslog($priority, $formated_message);
+			# Format message:
+			$formated_message = self::format($message, $data);
+
+			# Write to log:
+			$rc = syslog($priority, $formated_message);
+
+			# Raise counter
+			if ($rc) {
+				++self::$messageCounter;
+			}
+		}
+
+		return $rc;
 	}
 
 

@@ -1,9 +1,5 @@
 # Central file for compiling logmore
 #
-# This file is part of the LogMore package.
-# Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
-# LogMore is available under the ISC license; see LICENSE.txt
-#
 # Created on: 2012-08-02
 
 AWK = /usr/bin/awk
@@ -23,14 +19,10 @@ testtemplate = $(BUILDDIR)/test.tpl
 more = $(BUILDDIR)/logmore.php
 logbasedef = $(BUILDDIR)/logmorebase.def
 base = logmorebase.php
-license = LICENSE.txt
 
 main: 	base testfiles $(base) $(more)
 	@echo "Joining PHP files..."
 	$(ECHO) "<?php" > logmore.php
-	$(ECHO) "/*" >> logmore.php
-	$(CAT) $(license) >> logmore.php
-	$(ECHO) "*/" >> logmore.php
 	$(CAT) $(base) $(more) >> logmore.php
 	@echo "Move to final destination..."
 	$(MV) logmore.php src/LogMore.php
@@ -50,11 +42,10 @@ doc: 	src/LogMore.php README.txt install mddoc
 	$(MKDIR) doc
 	$(NATURALDOCS) -i . -o HTML doc/ -p .
 
-mddoc: 	HISTORY.txt README.txt LICENSE.txt
+mddoc: 	HISTORY.txt README.txt
 	@echo "Generate markdown doc..."
 	./nd2md.sh README.txt > README.md
 	./nd2md.sh HISTORY.txt > HISTORY.md
-	./nd2md.sh LICENSE.txt > LICENSE.md
 
 testfiles:
 	@echo "Creating test-directory if not present..."

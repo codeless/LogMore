@@ -1,31 +1,40 @@
 <?php
-/*
-Title: License
-
-LogMore is available under the ISC license:
-
-Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-*/
-
-
 
 
 /**
  * Class: LogMoreBase
  */
 abstract class LogMoreBase {
+
+	/**
+	 * Variable: $log
+	 * Either true or false; if true, logging takes place.
+	 * If false, logging won't take place.
+	 *
+	 * Set example:
+	 * : 	# Disable logging:
+	 * : 	LogMore::disable();
+	 * :
+	 * : 	# Enable logging:
+	 * : 	LogMore::enable();
+	 *
+	 * Opening and closing of logs is still allowed and won't
+	 * get intercepted!
+	 *
+	 * Default: true
+	 */
+	private static $log = true;
+
+	/**
+	 * Variable: $messageCounter
+	 * Counts the number of messages logged.
+	 */
+	protected static $messageCounter = 0;
+
+	public static function getMessageCounter() { return self::$messageCounter; }
+
+	public static function enable() { self::$log = true; }
+	public static function disable() { self::$log = false; }
 
 	/**
 	 * Function: add
@@ -45,14 +54,26 @@ abstract class LogMoreBase {
 	 * 	false - on failure
 	 */
 	private static function add($priority, $data) {
-		# Get the message:
-		$message = array_shift($data);
+		$rc = true;
 
-		# Format message:
-		$formated_message = self::format($message, $data);
+		# Only log if logging is enabled:
+		if (self::$log) {
+			# Get the message:
+			$message = array_shift($data);
 
-		# Write to log:
-		return syslog($priority, $formated_message);
+			# Format message:
+			$formated_message = self::format($message, $data);
+
+			# Write to log:
+			$rc = syslog($priority, $formated_message);
+
+			# Raise counter
+			if ($rc) {
+				++self::$messageCounter;
+			}
+		}
+
+		return $rc;
 	}
 
 
@@ -366,11 +387,13 @@ class LogMore extends LogMoreBase {
 		} else {
 			# Delete ident:
 			self::$ident = null;
+
+			# Reset counter:
+			self::$messageCounter = 0;
 		}
 
 		return $rc;
 	}
-
 
 	public static function getIdent() { return self::$ident; }
 

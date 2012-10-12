@@ -34,6 +34,16 @@ The LogMore class is a minimalist PHP logging tool for versions >= PHP 5.2, that
  		__LINE__,
  		...);
 
+ 	# Disable logging:
+ 	LogMore::disable();
+ 	# Won't land in the logfile:
+ 	LogMore::debug('A debug message');
+
+ 	# Enable logging:
+ 	LogMore::enable();
+ 	# Will land in the logfile again:
+ 	LogMore::debug('Another debug message');
+
 Using LogMore with the Unix/Linux tail-command works very well. While developing, catch the appendage to the logfile by entering the following command on the shell:
 
  	/usr/bin/tail -F /path/to/error.log
@@ -92,5 +102,4 @@ LogMore was written by Codeless (http://www.codeless.at/). All bugreports can be
 
 # License
 
-Copyright (c) 2012 by Manuel Hiptmair <more@codeless.at>
-LogMore is available under the ISC license; see LICENSE.txt
+This work is licensed under a Creative Commons Attribution 3.0 Unported License: <http://creativecommons.org/licenses/by/3.0/deed.en_US>

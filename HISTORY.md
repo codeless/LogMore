@@ -1,5 +1,9 @@
 # History
 
+- v0.9.0, released on 2012-10-12
+	- Decided to publish this package under the CC-BY-3.0-License
+	- Added methods to disable and enable logging (syslog calls)
+	- Added message counter
 - v0.8.6, not released yet
 	- Decided to publish this package under the ISC-License
 - v0.8.5, released on 2012-09-18
